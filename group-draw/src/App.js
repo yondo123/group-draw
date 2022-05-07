@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useReducer, useState } from 'react';
-import { teams } from './static/team';
 import GroupEditor from './components/GroupEditor';
 import './App.css';
 
@@ -10,7 +9,8 @@ const reducer = function (state, action) {
             return [];
         //삽입
         case 'insert':
-            return;
+            alert('as');
+            return [action.team, ...state];
         //삭제
         case 'remove':
             return;
@@ -21,7 +21,7 @@ const reducer = function (state, action) {
 
 function App() {
     //선택 국가 리스트
-    const [countryList, dispatch] = useReducer(reducer, []);
+    const [drawList, dispatch] = useReducer(reducer, []);
 
     //mounted
     useEffect(function () {
@@ -39,12 +39,12 @@ function App() {
      * @param {object} team : 선택 팀
      */
     const insertTeam = useCallback(function (team) {
-        console.log(JSON.stringify(team));
+        dispatch({ type: 'insert', team });
     }, []);
 
     return (
         <div className="App">
-            <GroupEditor countryList={countryList} insertTeam={insertTeam} />
+            <GroupEditor drawList={drawList} insertTeam={insertTeam} />
         </div>
     );
 }
