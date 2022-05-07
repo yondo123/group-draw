@@ -2,12 +2,20 @@ import { useEffect, useState } from 'react';
 import { teams } from '../static/team';
 import Port from './Port';
 
-const GroupEditor = function ({ countryList, insertTeam }) {
+const GroupEditor = function ({ drawList, insertTeam }) {
+    const [teamList, setTeamList] = useState([]);
     const [selectedContinent, setContinenet] = useState('afc');
     const [selectedTeam, setTeam] = useState();
 
     //updated
-    useEffect(function () {});
+    useEffect(function () {
+        setTeamList(teams);
+    }, []);
+
+    /**
+     * 팀 리스트 최신화
+     */
+    const updateTeamList = function () {};
 
     /**
      * 대륙 변경
@@ -26,19 +34,18 @@ const GroupEditor = function ({ countryList, insertTeam }) {
     };
 
     /**
-     * 팀 정보 가져오기
-     * @param {string} teamCode : 국가코드
+     * 팀 추가
      */
-    const getTeamInfo = function (teamCode) {
+    const submit = function () {
         let teamInfo = {};
-        teams.forEach(function (item) {
-            if (item.code === teamCode) {
+        teamList.forEach(function (item) {
+            if (item.code === selectedTeam) {
                 teamInfo = item;
                 return false;
             }
         });
 
-        return teamInfo;
+        insertTeam(teamInfo);
     };
 
     return (
@@ -68,7 +75,7 @@ const GroupEditor = function ({ countryList, insertTeam }) {
                         changeTeam(e.target.value);
                     }}
                 >
-                    {teams
+                    {teamList
                         .filter(function (item) {
                             return item.continent === selectedContinent;
                         })
@@ -85,7 +92,7 @@ const GroupEditor = function ({ countryList, insertTeam }) {
                 <Port />
             </div>
             <div>
-                <button type="button" onClick={insertTeam(getTeamInfo(selectedTeam))}>
+                <button type="button" onClick={submit}>
                     리스트 추가
                 </button>
             </div>
