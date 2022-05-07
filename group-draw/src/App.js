@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer, useState } from 'react';
+import { useCallback, useEffect, useReducer } from 'react';
 import GroupEditor from './components/GroupEditor';
 import './App.css';
 
@@ -9,7 +9,6 @@ const reducer = function (state, action) {
             return [];
         //삽입
         case 'insert':
-            alert('as');
             return [action.team, ...state];
         //삭제
         case 'remove':
