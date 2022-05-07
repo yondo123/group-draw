@@ -67,4 +67,50 @@ const teams = [
     }
 ];
 
-export { teams };
+const port = [
+    {
+        name: '1',
+        code: 'first'
+    },
+    {
+        name: '2',
+        code: 'second'
+    },
+    {
+        name: '3',
+        code: 'third'
+    },
+    {
+        name: '4',
+        code: 'fourth'
+    }
+];
+
+const continent = [
+    {
+        name: '유럽',
+        code: 'uefa'
+    },
+    {
+        name: '아시아',
+        code: 'afc'
+    },
+    {
+        name: '남아메리카',
+        code: 'conmebol'
+    },
+    {
+        name: '북아메리카',
+        code: 'concacaf'
+    },
+    {
+        name: '아프리카',
+        code: 'caf'
+    },
+    {
+        name: '오세아니아',
+        code: 'ofc'
+    }
+];
+
+export { teams, port, continent };
