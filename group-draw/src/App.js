@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useReducer } from 'react';
+import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import GroupEditor from './components/GroupEditor';
+import GroupDrawList from './components/GroupDrawList';
 import './App.css';
 
 const reducer = function (state, action) {
@@ -30,7 +31,7 @@ function App() {
 
     //updated
     useEffect(function () {
-        console.log('updated');
+        console.log('update');
     });
 
     /**
@@ -43,7 +44,9 @@ function App() {
 
     return (
         <div className="App">
-            <GroupEditor drawList={drawList} insertTeam={insertTeam} />
+            <GroupEditor insertTeam={insertTeam} />
+            <hr />
+            <GroupDrawList drawList={drawList} />
         </div>
     );
 }
