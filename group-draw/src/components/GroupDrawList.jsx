@@ -6,7 +6,7 @@ const GroupDrawList = function ({ drawList }) {
                 {drawList.map(function (item) {
                     return (
                         <li key={item.code}>
-                            국가 : {item.name} / 지역 : {item.continent.toUpperCase()} / 포트 : {item.selectedPort}
+                            국가 : {item.name} / 지역 : {item.continent.toUpperCase()} / 포트 : {item.selectedPot}
                         </li>
                     );
                 })}

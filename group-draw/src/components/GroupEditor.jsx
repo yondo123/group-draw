@@ -6,7 +6,7 @@ const GroupEditor = function ({ insertTeam }) {
     const [teamList, setTeamList] = useState(teams);
     const [selectedContinent, setContinent] = useState('uefa');
     const [selectedTeam, setTeam] = useState('esp');
-    const [selectedPort, setPort] = useState('first');
+    const [selectedPot, setPot] = useState('first');
 
     //mounted
     useEffect(function () {});
@@ -45,17 +45,17 @@ const GroupEditor = function ({ insertTeam }) {
      *포트 변경
      * @param {number} restLength : 남은 팀 갯수
      */
-    const changePort = function (restLength) {
+    const changePot = function (restLength) {
         if (!((teams.length - restLength) % 4)) {
-            switch (selectedPort) {
+            switch (selectedPot) {
                 case 'first':
-                    setPort('second');
+                    setPot('second');
                     break;
                 case 'second':
-                    setPort('third');
+                    setPot('third');
                     break;
                 case 'third':
-                    setPort('fourth');
+                    setPot('fourth');
                     break;
                 default:
                     return;
@@ -81,8 +81,8 @@ const GroupEditor = function ({ insertTeam }) {
             const availableTeams = teamList.filter(function (item) {
                 return item.code !== targetTeam.code;
             });
-            changePort(availableTeams.length);
-            insertTeam({ ...targetTeam, selectedPort });
+            changePot(availableTeams.length);
+            insertTeam({ ...targetTeam, selectedPot });
             setTeamList(availableTeams);
             setTeam(getContinentFisrtTeam(availableTeams, selectedContinent));
         } else {
@@ -105,12 +105,9 @@ const GroupEditor = function ({ insertTeam }) {
                     callback={changeTeam}
                 />
             </div>
-            {/* <div className="">
-                <SelectBox id={'portList'} label={'포트'} selectList={port} callback={changePort} />
-            </div> */}
             <div>
                 <button type="button" onClick={submit}>
-                    {selectedPort} 포트 추가
+                    {selectedPot} 포트 추가
                 </button>
             </div>
         </div>

@@ -67,7 +67,7 @@ const teams = [
     }
 ];
 
-const port = [
+const pot = [
     {
         name: '1',
         code: 'first'
@@ -113,4 +113,4 @@ const continent = [
     }
 ];
 
-export { teams, port, continent };
+export { teams, pot, continent };

@@ -1,4 +1,4 @@
-const Port = function ({ id, label, selectList, callback }) {
+const Pot = function ({ id, label, selectList, callback }) {
     return (
         <>
             <label htmlFor={id}>{label}</label>
@@ -19,4 +19,4 @@ const Port = function ({ id, label, selectList, callback }) {
         </>
     );
 };
-export default Port;
+export default Pot;
