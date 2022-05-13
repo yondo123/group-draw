@@ -5,7 +5,7 @@ import SelectBox from './Select';
 const GroupEditor = function ({ insertTeam }) {
     const [teamList, setTeamList] = useState(teams);
     const [selectedContinent, setContinent] = useState('uefa');
-    const [selectedTeam, setTeam] = useState('esp');
+    const [selectedTeam, setTeam] = useState('bel');
     const [selectedPot, setPot] = useState('first');
 
     //mounted
@@ -46,7 +46,7 @@ const GroupEditor = function ({ insertTeam }) {
      * @param {number} restLength : 남은 팀 갯수
      */
     const changePot = function (restLength) {
-        if (!((teams.length - restLength) % 4)) {
+        if (!((teams.length - restLength) % 8)) {
             switch (selectedPot) {
                 case 'first':
                     setPot('second');
@@ -68,7 +68,6 @@ const GroupEditor = function ({ insertTeam }) {
      */
     const submit = function () {
         let targetTeam = {};
-
         if (selectedTeam.length) {
             teams.forEach(function (item) {
                 if (item.code === selectedTeam) {

@@ -1,4 +1,12 @@
 const GroupDrawList = function ({ drawList }) {
+    const shuffle = function () {
+        return Math.random() - 0.5;
+    };
+
+    const alertTeam = function (team) {
+        alert(team);
+    };
+
     return (
         <div>
             <h2>등록 리스트</h2>
@@ -11,6 +19,22 @@ const GroupDrawList = function ({ drawList }) {
                     );
                 })}
             </ul>
+            <div>
+                {[...drawList].sort(shuffle).map(function (item) {
+                    return (
+                        <span key={item.code}>
+                            <button
+                                type="button"
+                                className="circle"
+                                value={item.name}
+                                onClick={(e) => {
+                                    alertTeam(e.target.value);
+                                }}
+                            ></button>
+                        </span>
+                    );
+                })}
+            </div>
         </div>
     );
 };
