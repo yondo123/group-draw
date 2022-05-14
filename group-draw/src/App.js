@@ -14,7 +14,9 @@ const reducer = function (state, action) {
             return [action.team, ...state];
         //삭제
         case 'remove':
-            return;
+            return state.filter(function (item) {
+                return item.code !== action.code;
+            });
         default:
             return state;
     }
@@ -23,6 +25,7 @@ const reducer = function (state, action) {
 function App() {
     //선택 국가 리스트
     const [drawList, dispatch] = useReducer(reducer, []);
+    const [groupList, setGroupList] = useState([]);
 
     //mounted
     useEffect(function () {
@@ -43,13 +46,18 @@ function App() {
         dispatch({ type: 'insert', team });
     }, []);
 
+    const insertGroup = function (targetTeam) {
+        dispatch({ type: 'remove', code: targetTeam.code });
+        setGroupList(targetTeam);
+    };
+
     return (
         <div className="App">
-            <GroupEditor insertTeam={insertTeam} />
+            <GroupEditor insertTeam={insertTeam} drawList={drawList} />
             <hr />
-            <GroupDrawList drawList={drawList} />
+            <GroupDrawList insertGroup={insertGroup} drawList={drawList} />
             <hr />
-            <GroupTableList drawList={drawList} />
+            <GroupTableList groupList={groupList} />
         </div>
     );
 }

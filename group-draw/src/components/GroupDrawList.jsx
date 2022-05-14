@@ -1,24 +1,19 @@
-const GroupDrawList = function ({ drawList }) {
+const GroupDrawList = function ({ drawList, insertGroup }) {
     const shuffle = function () {
         return Math.random() - 0.5;
     };
 
-    const alertTeam = function (team) {
-        alert(team);
+    /**
+     * 팀 선택
+     * @param {object} team : 선택 팀
+     */
+    const selectTeam = function (team) {
+        insertGroup(team);
     };
 
     return (
         <div>
-            <h2>등록 리스트</h2>
-            <ul>
-                {drawList.map(function (item) {
-                    return (
-                        <li key={item.code}>
-                            국가 : {item.name} / 지역 : {item.continent.toUpperCase()} / 포트 : {item.selectedPot}
-                        </li>
-                    );
-                })}
-            </ul>
+            <h2>👉추첨하기</h2>
             <div>
                 {[...drawList].sort(shuffle).map(function (item) {
                     return (
@@ -26,9 +21,8 @@ const GroupDrawList = function ({ drawList }) {
                             <button
                                 type="button"
                                 className="circle"
-                                value={item.name}
                                 onClick={(e) => {
-                                    alertTeam(e.target.value);
+                                    selectTeam(item);
                                 }}
                             ></button>
                         </span>

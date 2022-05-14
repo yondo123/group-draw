@@ -2,14 +2,16 @@ import { useEffect, useState } from 'react';
 import { teams, continent } from '../static/constants';
 import SelectBox from './Select';
 
-const GroupEditor = function ({ insertTeam }) {
+const GroupEditor = function ({ insertTeam, drawList }) {
     const [teamList, setTeamList] = useState(teams);
     const [selectedContinent, setContinent] = useState('uefa');
     const [selectedTeam, setTeam] = useState('bel');
     const [selectedPot, setPot] = useState('first');
 
     //mounted
-    useEffect(function () {});
+    useEffect(function () {
+        console.log(teamList.length);
+    });
 
     /**
      * 대륙 변경
@@ -105,7 +107,15 @@ const GroupEditor = function ({ insertTeam }) {
                 />
             </div>
             <div>
-                <button type="button" onClick={submit}>
+                <button
+                    type="button"
+                    onClick={submit}
+                    disabled={
+                        drawList.filter((item) => {
+                            return item.selectedPot !== selectedPot;
+                        }).length || teamList.length < 43
+                    }
+                >
                     {selectedPot} 포트 추가
                 </button>
             </div>

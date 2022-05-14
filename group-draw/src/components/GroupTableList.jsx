@@ -1,4 +1,11 @@
+import { useState } from 'react';
+import React from 'react';
+
 const GroupTable = function () {
+    /**
+     *
+     */
+    const insertGroups = function (team) {};
     return (
         <>
             <table>
@@ -169,11 +176,8 @@ const GroupTable = function () {
                     <td></td>
                 </tr>
             </table>
-            <div className="button-wrap">
-                <button type="button">추첨하기</button>
-            </div>
         </>
     );
 };
 
-export default GroupTable;
+export default React.memo(GroupTable);
