@@ -1,11 +1,6 @@
-import { useState } from 'react';
 import React from 'react';
 
-const GroupTable = function () {
-    /**
-     *
-     */
-    const insertGroups = function (team) {};
+const GroupTable = function ({ group }) {
     return (
         <>
             <table>
@@ -13,7 +8,7 @@ const GroupTable = function () {
                     <th colSpan={2}>GROUP A</th>
                 </tr>
                 <tr>
-                    <td></td>
+                    <td>{group.A}</td>
                     <td></td>
                 </tr>
                 <tr>
@@ -178,6 +173,19 @@ const GroupTable = function () {
             </table>
         </>
     );
+};
+
+GroupTable.defaultProps = {
+    group: {
+        A: [{ code: '', continent: '', resource: '', name: '', selectedPot: '' }],
+        B: [{ code: '', continent: '', resource: '', name: '', selectedPot: '' }],
+        C: [{ code: '', continent: '', resource: '', name: '', selectedPot: '' }],
+        D: [{ code: '', continent: '', resource: '', name: '', selectedPot: '' }],
+        E: [{ code: '', continent: '', resource: '', name: '', selectedPot: '' }],
+        F: [{ code: '', continent: '', resource: '', name: '', selectedPot: '' }],
+        G: [{ code: '', continent: '', resource: '', name: '', selectedPot: '' }],
+        H: [{ code: '', continent: '', resource: '', name: '', selectedPot: '' }]
+    }
 };
 
 export default React.memo(GroupTable);

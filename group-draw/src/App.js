@@ -25,7 +25,16 @@ const reducer = function (state, action) {
 function App() {
     //선택 국가 리스트
     const [drawList, dispatch] = useReducer(reducer, []);
-    const [groupList, setGroupList] = useState([]);
+    const [group, setGroup] = useState({
+        A: [],
+        B: [],
+        C: [],
+        D: [],
+        E: [],
+        F: [],
+        G: [],
+        H: []
+    });
 
     //mounted
     useEffect(function () {
@@ -47,8 +56,50 @@ function App() {
     }, []);
 
     const insertGroup = function (targetTeam) {
+        const groups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+        const continent = targetTeam.continent;
+        const pot = targetTeam.selectedPot;
+
+        for (let index = 0; index < 8; index++) {
+            const targetGroupName = groups[index];
+            const targetGroup = group[targetGroupName];
+            let maximum = 1;
+            let minimum = 0;
+
+            switch (pot) {
+                case 'second':
+                    minimum = 1;
+                    break;
+                case 'third':
+                    minimum = 2;
+                    break;
+                case 'fourth':
+                    minimum = 3;
+                    break;
+                default:
+                    minimum = 0;
+                    break;
+            }
+
+            if (targetGroup.length === minimum) {
+                const exist = targetGroup.filter(function (item) {
+                    return continent === item.continent;
+                });
+
+                if (continent === 'uefa') {
+                    maximum = 2;
+                }
+
+                if (exist.length < maximum) {
+                    setGroup({
+                        ...group,
+                        [targetGroupName]: [...targetGroup, targetTeam]
+                    });
+                    break;
+                }
+            }
+        }
         dispatch({ type: 'remove', code: targetTeam.code });
-        setGroupList(targetTeam);
     };
 
     return (
@@ -57,7 +108,7 @@ function App() {
             <hr />
             <GroupDrawList insertGroup={insertGroup} drawList={drawList} />
             <hr />
-            <GroupTableList groupList={groupList} />
+            <GroupTableList group={group} />
         </div>
     );
 }
