@@ -8,7 +8,7 @@ const GroupTable = function ({ group }) {
                     <th colSpan={2}>GROUP A</th>
                 </tr>
                 <tr>
-                    <td>{group.A}</td>
+                    <td></td>
                     <td></td>
                 </tr>
                 <tr>

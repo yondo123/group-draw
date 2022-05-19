@@ -1,17 +1,13 @@
-import { useEffect, useState } from 'react';
-import { teams, continent } from '../static/constants';
+import { useEffect, useRef, useState } from 'react';
+import { teams, continent, limited } from '../static/constants';
 import SelectBox from './Select';
 
 const GroupEditor = function ({ insertTeam, drawList }) {
+    const insertCount = useRef(0);
     const [teamList, setTeamList] = useState(teams);
     const [selectedContinent, setContinent] = useState('uefa');
     const [selectedTeam, setTeam] = useState('bel');
     const [selectedPot, setPot] = useState('first');
-
-    //mounted
-    useEffect(function () {
-        console.log(teamList.length);
-    });
 
     /**
      * 대륙 변경
@@ -45,10 +41,11 @@ const GroupEditor = function ({ insertTeam, drawList }) {
 
     /**
      *포트 변경
-     * @param {number} restLength : 남은 팀 갯수
+     * @param {number} insertCount : 추가 횟수
      */
-    const changePot = function (restLength) {
-        if (!((teams.length - restLength) % 8)) {
+    const changePot = function (insertCount) {
+        console.log(insertCount, '입니다.');
+        if (insertCount % 8 < 1) {
             switch (selectedPot) {
                 case 'first':
                     setPot('second');
@@ -66,15 +63,30 @@ const GroupEditor = function ({ insertTeam, drawList }) {
     };
 
     /**
+     * 등록 가능 상태 체크
+     */
+    const checkSubmit = function () {
+        const drawLength = drawList.filter((item) => {
+            return item.selectedPot !== selectedPot;
+        }).length;
+        console.log(selectedPot, drawLength, teamList.length);
+        return drawLength || teamList.length < 43;
+    };
+
+    /**
      * 팀 추가
      */
     const submit = function () {
         let targetTeam = {};
+        let numberOfContinent = 0;
         if (selectedTeam.length) {
             teams.forEach(function (item) {
                 if (item.code === selectedTeam) {
                     targetTeam = item;
-                    return false;
+                }
+
+                if (item.continent === selectedContinent) {
+                    numberOfContinent++;
                 }
             });
 
@@ -82,10 +94,25 @@ const GroupEditor = function ({ insertTeam, drawList }) {
             const availableTeams = teamList.filter(function (item) {
                 return item.code !== targetTeam.code;
             });
-            changePot(availableTeams.length);
+
+            const restContinent = availableTeams.filter(function (item) {
+                return item.continent === selectedContinent;
+            });
+
+            if (numberOfContinent - restContinent.length >= limited[selectedContinent]) {
+                setTeamList(
+                    availableTeams.filter((item) => {
+                        return item.continent !== selectedContinent;
+                    })
+                );
+                setTeam('');
+            } else {
+                setTeamList(availableTeams);
+                setTeam(getContinentFisrtTeam(availableTeams, selectedContinent));
+            }
+            insertCount.current += 1;
+            changePot(insertCount.current);
             insertTeam({ ...targetTeam, selectedPot });
-            setTeamList(availableTeams);
-            setTeam(getContinentFisrtTeam(availableTeams, selectedContinent));
         } else {
             alert('국가를 선택해주세요..');
         }
@@ -107,15 +134,7 @@ const GroupEditor = function ({ insertTeam, drawList }) {
                 />
             </div>
             <div>
-                <button
-                    type="button"
-                    onClick={submit}
-                    disabled={
-                        drawList.filter((item) => {
-                            return item.selectedPot !== selectedPot;
-                        }).length || teamList.length < 43
-                    }
-                >
+                <button type="button" onClick={submit} disabled={checkSubmit()}>
                     {selectedPot} 포트 추가
                 </button>
             </div>

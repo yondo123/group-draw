@@ -470,6 +470,15 @@ const pot = [
     }
 ];
 
+const limited = {
+    uefa: 13,
+    conmebol: 5,
+    caf: 5,
+    afc: 4,
+    concacaf: 4,
+    ofc: 1
+};
+
 const continent = [
     {
         name: '유럽',
@@ -497,4 +506,4 @@ const continent = [
     }
 ];
 
-export { teams, pot, continent };
+export { teams, pot, continent, limited };
