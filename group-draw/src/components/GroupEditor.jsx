@@ -69,8 +69,7 @@ const GroupEditor = function ({ insertTeam, drawList }) {
         const drawLength = drawList.filter((item) => {
             return item.selectedPot !== selectedPot;
         }).length;
-        console.log(selectedPot, drawLength, teamList.length);
-        return drawLength || teamList.length < 43;
+        return drawLength || insertCount.current >= 32;
     };
 
     /**
