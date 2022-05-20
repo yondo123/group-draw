@@ -34,11 +34,16 @@ table {
   margin-bottom: 5px;
 }
 
+th{
+  text-align: center;
+}
+
 tr {
   border-bottom: 1px solid #ddd;
 }
 
 td {
+  width: auto;
   height: 16px;
 }
 button.circle {

@@ -38,7 +38,6 @@ function App() {
 
     //mounted
     useEffect(function () {
-        console.log('APP', 'mounted');
         dispatch({ type: 'init' });
     }, []);
 
@@ -55,6 +54,10 @@ function App() {
         dispatch({ type: 'insert', team });
     }, []);
 
+    /**
+     * 그룹에 팀 추가하기
+     * @param {object} targetTeam : 팀
+     */
     const insertGroup = function (targetTeam) {
         const groups = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
         const continent = targetTeam.continent;

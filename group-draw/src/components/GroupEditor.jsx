@@ -44,7 +44,6 @@ const GroupEditor = function ({ insertTeam, drawList }) {
      * @param {number} insertCount : 추가 횟수
      */
     const changePot = function (insertCount) {
-        console.log(insertCount, '입니다.');
         if (insertCount % 8 < 1) {
             switch (selectedPot) {
                 case 'first':

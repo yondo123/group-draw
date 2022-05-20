@@ -1,181 +1,47 @@
 import React from 'react';
 
+const Group = function ({ group, name }) {
+    return (
+        <table>
+            <tr>
+                <th colSpan={2}>GROUP {name}</th>
+            </tr>
+            <tr>
+                <td>{group[0] ? group[0].continent.toUpperCase() : ''}</td>
+                <td>{group[0] ? group[0].name : ''}</td>
+            </tr>
+            <tr>
+                <td>{group[1] ? group[1].continent.toUpperCase() : ''}</td>
+                <td>{group[1] ? group[1].name : ''}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>{group[2] ? group[2].continent.toUpperCase() : ''}</td>
+                <td>{group[2] ? group[2].name : ''}</td>
+            </tr>
+            <tr>
+                <td>{group[3] ? group[3].continent.toUpperCase() : ''}</td>
+                <td>{group[3] ? group[3].name : ''}</td>
+            </tr>
+        </table>
+    );
+};
+
 const GroupTable = function ({ group }) {
     return (
         <>
-            <table>
-                <tr>
-                    <th colSpan={2}>GROUP A</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <th colSpan={2}>GROUP B</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <th colSpan={2}>GROUP C</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <th colSpan={2}>GROUP D</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <th colSpan={2}>GROUP E</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <th colSpan={2}>GROUP F</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <th colSpan={2}>GROUP G</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-            <table>
-                <tr>
-                    <th colSpan={2}>GROUP H</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
+            <Group group={group.A} name={'A'} />
+            <Group group={group.B} name={'B'} />
+            <Group group={group.C} name={'C'} />
+            <Group group={group.D} name={'D'} />
+            <Group group={group.E} name={'E'} />
+            <Group group={group.F} name={'F'} />
+            <Group group={group.G} name={'G'} />
         </>
     );
 };
 
-GroupTable.defaultProps = {
+Group.defaultProps = {
     group: {
         A: [{ code: '', continent: '', resource: '', name: '', selectedPot: '' }],
         B: [{ code: '', continent: '', resource: '', name: '', selectedPot: '' }],
