@@ -37,6 +37,7 @@ const GroupTable = function ({ group }) {
             <Group group={group.E} name={'E'} />
             <Group group={group.F} name={'F'} />
             <Group group={group.G} name={'G'} />
+            <Group group={group.H} name={'H'} />
         </>
     );
 };

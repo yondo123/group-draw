@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { teams, continent, limited } from '../static/constants';
 import SelectBox from './Select';
 
